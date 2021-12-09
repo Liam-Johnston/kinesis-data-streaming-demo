@@ -30,3 +30,6 @@ override.tf.json
 
 .env
 tfplan
+destroy_plan
+keys
+.DS_Store

@@ -1,10 +1,10 @@
-TF_STATE_BUCKET =
-TF_STATE_KEY =
-TF_STATE_REGION =
-TF_VARS_FILE ?= "../config/terraform.tfvars"
+TF_STATE_BUCKET = liam-tfstates
+TF_STATE_KEY = kinesis-workshop
+TF_STATE_REGION = ap-southeast-2
+TF_VARS_FILE ?= ../config/terraform.tfvars
 DEPLOY_REGION ?= ${TF_STATE_REGION}
 
-TF_VARS = -var 'region=$(DEPLOY_REGION)' \
+TF_VARS = -var='region=$(DEPLOY_REGION)' \
 	-var-file="$(TF_VARS_FILE)"
 
 TF_BACKEND_CONFIG := -backend-config="bucket=$(TF_STATE_BUCKET)" \
@@ -40,12 +40,12 @@ plan:
 
 .PHONY: apply
 apply:
-	$(COMPOSE_RUN_TERRAFORM) apply "tfplan" $(TF_VARS)
+	$(COMPOSE_RUN_TERRAFORM) apply "tfplan"
 
 .PHONY: destroy_plan
 destroy_plan:
-	$(COMPOSE_RUN_TERRAFORM) plan -destroy $(TF_VARS)
+	$(COMPOSE_RUN_TERRAFORM) plan -destroy -out=destroy_plan $(TF_VARS)
 
 .PHONY: destroy_apply
 destroy_apply:
-	$(COMPOSE_RUN_TERRAFORM) destroy -auto-approve $(TF_VARS)
+	$(COMPOSE_RUN_TERRAFORM) apply "destroy_plan"
