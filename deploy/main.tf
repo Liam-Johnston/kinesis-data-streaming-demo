@@ -4,7 +4,7 @@ module "server" {
   region          = var.region
   ssh_key_name    = var.ssh_key_name
   firehose_stream = module.log_ingestor.firehose_stream
-  ip_address      = chomp(data.http.myip.body)
+  ip_address      = local.my_ip
 }
 
 module "log_ingestor" {
@@ -15,7 +15,7 @@ module "log_ingestor" {
 module "open_search" {
   source       = "./modules/open-search"
   owner        = var.owner
-  ip_address   = chomp(data.http.myip.body)
+  ip_address   = local.my_ip
   region       = var.region
   project_name = var.project_name
   domain_name  = local.es_domain
