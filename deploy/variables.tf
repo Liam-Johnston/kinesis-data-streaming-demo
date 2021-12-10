@@ -17,8 +17,3 @@ variable "owner" {
   type        = string
   description = "The owner of the project that this infrastructure has been built for"
 }
-
-variable "initials" {
-  type        = string
-  description = "Used with Elasticsearch domain"
-}

@@ -1,4 +1,4 @@
 locals {
-  domain_name       = "${var.initials}-web-log-summary"
+  domain_name       = "web-log-summary"
   master_user_name  = "admin"
 }
