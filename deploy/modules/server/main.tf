@@ -1,5 +1,5 @@
 data "aws_key_pair" "development_keys" {
-  key_name = "${var.owner}-development"
+  key_name = "${var.ssh_key_name}"
 }
 
 data "aws_vpc" "default" {
@@ -23,7 +23,7 @@ resource "aws_security_group" "server_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [var.ip_address]
+    cidr_blocks      = ["${var.ip_address}/32"]
   }
 }
 
