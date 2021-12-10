@@ -1,5 +1,5 @@
 data "aws_key_pair" "development_keys" {
-  key_name = "${var.ssh_key_name}"
+  key_name = var.ssh_key_name
 }
 
 data "aws_vpc" "default" {
