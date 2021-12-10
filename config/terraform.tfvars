@@ -1,3 +1,3 @@
-project_name  = "tkav-kinesis-workshop"
-owner         = "tom-kavanagh"
-ssh_key_name  = "tk-contino-dev"
+project_name  = "kinesis-workshop"
+owner         = ""
+ssh_key_name  = ""
