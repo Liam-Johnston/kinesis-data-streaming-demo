@@ -2,10 +2,10 @@ variable "owner" {
   type = string
 }
 
-variable "region" {
+variable "input_firehose_arn" {
   type = string
 }
 
-variable "firehose_stream" {
+variable "output_firehose_arn" {
   type = string
 }

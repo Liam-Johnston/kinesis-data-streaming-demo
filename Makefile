@@ -1,11 +1,12 @@
-TF_STATE_BUCKET = liam-tfstates
-TF_STATE_KEY = kinesis-workshop
-TF_STATE_REGION = ap-southeast-2
-TF_VARS_FILE ?= ../config/terraform.tfvars
+TF_STATE_BUCKET =
+TF_STATE_KEY =
+TF_STATE_REGION =
+OWNER =
+
 DEPLOY_REGION ?= ${TF_STATE_REGION}
 
 TF_VARS = -var='region=$(DEPLOY_REGION)' \
-	-var-file="$(TF_VARS_FILE)"
+	-var='owner=$(OWNER)'
 
 TF_BACKEND_CONFIG := -backend-config="bucket=$(TF_STATE_BUCKET)" \
 	-backend-config="key=$(TF_STATE_KEY)" \

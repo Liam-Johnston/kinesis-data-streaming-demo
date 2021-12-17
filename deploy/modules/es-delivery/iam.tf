@@ -1,5 +1,5 @@
-resource "aws_iam_role" "firehose_role" {
-  name = "${var.owner}-firehose-role"
+resource "aws_iam_role" "s3_delivery_role" {
+  name = "${var.owner}-s3-error-log-delivery-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -16,7 +16,7 @@ resource "aws_iam_role" "firehose_role" {
   })
 }
 
-data "aws_iam_policy_document" "s3_log_delivery" {
+data "aws_iam_policy_document" "s3_delivery" {
   statement {
     sid = "AllowS3Delivery"
     actions = [
@@ -34,13 +34,13 @@ data "aws_iam_policy_document" "s3_log_delivery" {
   }
 }
 
-resource "aws_iam_policy" "s3_log_delivery" {
-  name   = "${var.owner}-s3-log-delivery"
-  policy = data.aws_iam_policy_document.s3_log_delivery.json
+resource "aws_iam_policy" "s3_delivery" {
+  name   = "${var.owner}-s3-error-log-delivery"
+  policy = data.aws_iam_policy_document.s3_delivery.json
 }
 
 
-resource "aws_iam_role_policy_attachment" "test-attach" {
-  role       = aws_iam_role.firehose_role.name
-  policy_arn = aws_iam_policy.s3_log_delivery.arn
+resource "aws_iam_role_policy_attachment" "attach-s3-delivery" {
+  role       = aws_iam_role.s3_delivery_role.name
+  policy_arn = aws_iam_policy.s3_delivery.arn
 }

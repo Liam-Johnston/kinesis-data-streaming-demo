@@ -3,13 +3,8 @@ variable "owner" {
   description = "The owner of the project that this infrastructure has been built for"
 }
 
-variable "ip_address" {
-  type        = string
-  description = "Your IP address, used to connect to the server & open search dashboard"
-}
-
 variable "region" {
-  type        = string
+  type = string
 }
 
 variable "project_name" {
@@ -18,5 +13,13 @@ variable "project_name" {
 }
 
 variable "domain_name" {
+  type = string
+}
+
+variable "delivery_firehose_role_arn" {
+  type = string
+}
+
+variable "delivery_firehose_role_name" {
   type = string
 }
